@@ -1,7 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
 const chalk = require('chalk');
-const { json } = require('stream/consumers');
 
 const notesPath = path.join(__dirname, 'db.json');
 
@@ -42,8 +41,19 @@ async function removeNote(id) {
   console.log(chalk.bgCyan('Note is removed'));
 }
 
+async function updateNote(id, newTitle) {
+  const notes = await getNotes();
+
+  const updatedNotes = notes.map((note) =>
+    note.id === id ? { ...note, title: newTitle } : note,
+  );
+  await fs.writeFile(notesPath, JSON.stringify(updatedNotes));
+  console.log(chalk.cyan('Note was updated'));
+}
+
 module.exports = {
   addNote,
-  printNotes,
+  getNotes,
   removeNote,
+  updateNote,
 };

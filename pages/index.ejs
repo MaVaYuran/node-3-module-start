@@ -14,9 +14,9 @@
   </head>
   <body>
     <% if(created){ %>
-      <div class="alert alert-success" >Note has been created</div>
+      <div id="success-alert" class="alert alert-success" >Note has been created</div>
     <% } %>
-    <h1><%= title %></h1>
+    <h1 class="text-center"><%= title %></h1>
     <div class="container">
       <form action="/" method="post" class="mb-2">
         <div class="form-group mb-2">
@@ -28,11 +28,11 @@
       <div class="card">
         <ul class="list-group">
           <% for(let i = 0; i<notes.length; i++){ %>
-          <li class="list-group-item d-flex justify-content-between">
+          <li class="list-group-item d-flex justify-content-between"> 
            <span class="note-title"><%= notes[i].title%></span>
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-primary me-1" data-type="edit" data-id="<%=notes[i].id%>">Редактировать</button>
-              <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
+            <div class="d-flex justify-content-between gap-1">
+              <button class="btn btn-primary note-edit" data-type="edit" data-id="<%=notes[i].id%>">Обновить</button>
+              <button class="btn btn-danger note-remove" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
             </div>
           </li>
           <% } %>

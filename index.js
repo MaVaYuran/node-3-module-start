@@ -37,7 +37,6 @@ app.post('/', async (req, res) => {
 });
 
 app.delete('/:id', async (req, res) => {
-  // console.log('id', req.params.id);
   await removeNote(req.params.id);
   res.render('index', {
     title: 'Express app',

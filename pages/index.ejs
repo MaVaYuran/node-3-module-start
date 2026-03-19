@@ -13,11 +13,17 @@
     <title><%= title %></title>
   </head>
   <body>
+  <%- include('./partials/user-header.ejs') %>
+
+  <div class="container">
     <% if(created){ %>
       <div class="alert alert-success" >Note has been created</div>
     <% } %>
-    <h1><%= title %></h1>
-    <div class="container">
+    <% if(error){ %>
+      <div class="alert alert-danger" >Something went wrong!</div>
+    <% } %>
+
+    <h1 ><%= title %></h1>
       <form action="/" method="post" class="mb-2">
         <div class="form-group mb-2">
           <input type="text" class="form-control" name="title" required />
@@ -29,11 +35,14 @@
         <ul class="list-group">
           <% for(let i = 0; i<notes.length; i++){ %>
           <li class="list-group-item d-flex justify-content-between">
-           <span class="note-title"><%= notes[i].title%></span>
+           <span ><%= notes[i].title%></span>
+           <span ><%=notes[i].owner %></span>
+           <% if(notes[i].owner=== userEmail){ %>
             <div class="d-flex justify-content-between">
               <button class="btn btn-primary me-1" data-type="edit" data-id="<%=notes[i].id%>">Редактировать</button>
               <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
             </div>
+            <% } %>
           </li>
           <% } %>
         </ul>

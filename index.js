@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -157,6 +156,6 @@ mongoose
   )
   .then(() => {
     app.listen(port, () => {
-      console.log(chalk.cyan(`Server has been started on port ${port}`));
+      console.log(`Server has been started on port ${port}`);
     });
   });
